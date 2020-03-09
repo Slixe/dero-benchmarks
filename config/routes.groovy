@@ -8,4 +8,4 @@ group '/api', {
 	post '/delete'
 }, [
 	action: 'main'
-	]
+]
