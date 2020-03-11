@@ -1,0 +1,68 @@
+<template>
+<div id="index">
+    <v-card class="bench" :loading="loading">
+        <v-card-title>
+            <h2>Benchmarks</h2>
+            <v-spacer></v-spacer>
+            <v-text-field class="search" v-model="search" append-icon="magnify" label="Search" single-line hide-details></v-text-field>
+        </v-card-title>
+        <v-data-table :search="search" multi-sort :headers="headers" :items="benchmarks" :items-per-page="5" class="elevation-5">
+            <template v-slot:item.timestamp="{ item }">
+                <span>{{ new Date(item.timestamp).toLocaleDateString() }}</span>
+            </template>
+        </v-data-table>
+    </v-card>
+</div>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            loading: true,
+            search: "",
+            headers: [
+                {
+                    text: "Vendor",
+                    align: "start",
+                    value: "vendor"
+                },
+                {
+                    text: "Model",
+                    value: "model"
+                },
+                {
+                    text: "Hashrate (h/s)",
+                    value: "hashrate"
+                },
+                {
+                    text: "Miner",
+                    value: "minerVersion"
+                },
+                {
+                    text: "Submitted On",
+                    value: "timestamp",
+                    class: "Date"
+                },
+                {
+                    text: "User",
+                    value: "owner"
+                }
+            ],
+        benchmarks: []
+        }
+    },
+    mounted() {
+        fetch("http://localhost:8081/api/benchmarks").then(result => result.json()).then(json => {
+            this.benchmarks = json
+            this.loading = false
+        })
+    }
+}
+</script>
+
+<style scoped>
+.bench {
+    margin: 10%;
+}
+</style>

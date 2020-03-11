@@ -1,0 +1,51 @@
+<template>
+  <div id="app">
+    <v-app>
+      <header class="header">
+        <h1>DERO BENCHMARKS</h1>
+      </header>
+      <v-content>
+          <transition name="fade">
+            <router-view></router-view>
+          </transition>
+      </v-content>
+    </v-app>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'App'
+}
+</script>
+
+<style>
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+}
+
+.header {
+  margin-top: 2%;
+}
+
+* {
+    transition: background-color 200ms ease, color 150ms ease-in-out;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition-property: opacity;
+  transition-duration: 0.4s;
+}
+
+.fade-enter-active {
+  transition-delay: 0.4s;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+</style>
