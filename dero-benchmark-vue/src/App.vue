@@ -15,7 +15,14 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  mounted() {
+    fetch("/api/auth/validate", { method: "POST" }).then(result => result.json()).then(json => {
+      if (!json.logged) {
+        localStorage.setItem("token", null)
+      }
+    })
+  }
 }
 </script>
 

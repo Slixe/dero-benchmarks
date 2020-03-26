@@ -12,6 +12,7 @@
             </template>
         </v-data-table>
     </v-card>
+    <h4>Submit your own benchmarks <router-link to="/submit">here</router-link></h4>
 </div>
 </template>
 
@@ -53,7 +54,7 @@ export default {
         }
     },
     mounted() {
-        fetch("http://localhost:8081/api/benchmarks").then(result => result.json()).then(json => {
+        fetch("/api/benchmarks").then(result => result.json()).then(json => {
             this.benchmarks = json
             this.loading = false
         })
@@ -64,5 +65,7 @@ export default {
 <style scoped>
 .bench {
     margin: 10%;
+    margin-top: 5%;
+    margin-bottom: 2%;
 }
 </style>
