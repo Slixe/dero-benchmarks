@@ -24,7 +24,6 @@ dependencies {
         'com.sparkjava:spark-core:2.8.0',
         'net.sf.trove4j:trove4j:3.0.3',
         'com.google.code.gson:gson:2.8.5',
-        //'com.google.guava:guava:27.0.1-jre',
         'com.mashape.unirest:unirest-java:1.4.9',
         'org.apache.commons:commons-lang3:3.8.1',
 		'org.apache.logging.log4j:log4j-core:2.10.0'

@@ -1,12 +1,9 @@
 package fr.slixe.benchmarks.http.controller;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.google.inject.Inject;
 
 import fr.litarvan.paladin.http.Controller;
@@ -70,7 +67,7 @@ public class MainController extends Controller {
 	 * @param int benchID
 	 */
 	@RequestParams(required = ["benchID"])
-	def confirm(int benchID)  //TODO Add auth
+	def confirm(int benchID)
 	{
 		log.debug("Confirmation of Benchmark $benchID")
 		
@@ -88,7 +85,7 @@ public class MainController extends Controller {
 	 * @param int benchID
 	 */
 	@RequestParams(required = ["benchID"])
-	def delete(int benchID)  //TODO Add auth
+	def delete(int benchID)
 	{
 		log.debug("Removing Benchmark $benchID")
 		

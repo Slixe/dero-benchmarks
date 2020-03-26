@@ -78,7 +78,10 @@ public class BenchmarkService {
 	
 	public boolean addUnconfirmedBenchmarks(Benchmark benchmark)
 	{
-		return this.unconfirmedBenchmarks.add(benchmark);
+		boolean result = this.unconfirmedBenchmarks.add(benchmark);
+		saveBenchmarks(this.unconfirmedBenchmarksFile, this.unconfirmedBenchmarks);
+
+		return result;
 	}
 
 	public boolean confirmBenchmark(int benchID)
@@ -89,6 +92,7 @@ public class BenchmarkService {
 			Benchmark benchmark = opt.get();
 			this.unconfirmedBenchmarks.remove(benchmark);
 			this.confirmedBenchmarks.add(benchmark);
+			saveBenchmarks();
 		}
 		
 		return opt.isPresent();
@@ -102,9 +106,13 @@ public class BenchmarkService {
 			result = this.confirmedBenchmarks.removeIf(e -> e.getId() == benchID);
 		}
 
+		if (result) {
+			this.saveBenchmarks();
+		}
+
 		return result;
 	}
-	
+
 	public int lastBenchId()
 	{
 		if (this.confirmedBenchmarks.size() == 0 && this.unconfirmedBenchmarks.size() == 0)

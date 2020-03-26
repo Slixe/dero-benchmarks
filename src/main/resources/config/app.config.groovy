@@ -3,6 +3,8 @@ package config;
 import java.util.concurrent.TimeUnit
 
 import fr.litarvan.paladin.http.AcceptCrossOriginRequestsMiddleware
+import fr.slixe.benchmarks.http.AuthMiddleware
+import fr.slixe.benchmarks.http.controller.AuthController
 import fr.slixe.benchmarks.http.controller.MainController
 
 [
@@ -12,9 +14,14 @@ import fr.slixe.benchmarks.http.controller.MainController
      * The app controllers, call them whatever you want to
      */
     controllers: [
-        main: MainController
+        main: MainController,
+		auth: AuthController
     ],
 
+	routeMiddlewares: [
+		auth: AuthMiddleware
+	],
+	
     /**
      * Global middlewares (applied on all routes)
      */

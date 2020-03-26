@@ -8,6 +8,7 @@ import com.google.inject.Inject;
 import fr.litarvan.paladin.OnStart;
 import fr.litarvan.paladin.OnStop;
 import fr.litarvan.paladin.PaladinApp;
+import fr.slixe.benchmarks.service.AuthService;
 import fr.slixe.benchmarks.service.BenchmarkService;
 import spark.Spark;
 
@@ -21,11 +22,17 @@ public class App
 	@Inject
 	private BenchmarkService benchmarkService;
 	
+	@Inject
+	private AuthService authService;
+	
 	@OnStart
 	public void start()
 	{
 		log.info("Loading benchmarks...");
 		benchmarkService.loadBenchmarks();
+		
+		log.info("Loading admins...");
+		authService.loadUsers();
 	}
 
 	@OnStop
@@ -33,7 +40,7 @@ public class App
 	{
 		log.info("Shutting down http service...");
 		Spark.stop();
-		
+
 		log.info("Saving benchmarks...");
 		benchmarkService.saveBenchmarks();
 		
