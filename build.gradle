@@ -2,10 +2,21 @@ apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
+apply plugin: 'application'
 
 // Groovy interop
 sourceSets.main.java.srcDirs = []
 sourceSets.main.groovy.srcDirs += ["src/main/java"]
+
+compileJava.options.encoding = 'UTF-8'
+
+mainClassName = 'fr.slixe.benchmarks.Main'
+
+group 'fr.slixe'
+version '1.0.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
   	maven {
@@ -33,4 +44,21 @@ dependencies {
 		exclude group: 'org.apache.httpcomponents', module: 'httpcore-nio'
 		exclude group: 'org.apache.logging.log4j', module: 'log4j-core'
 	}
+}
+
+task fatJar(type: Jar) {
+	from {
+		configurations
+			.runtimeClasspath
+				.findAll { !it.name.endsWith('pom') }
+				.collect { it.isDirectory() ? it : zipTree(it) }
+	}
+		with jar
+
+		baseName = 'dero-benchmarks'
+
+
+		manifest {
+			attributes 'Main-Class': mainClassName
+		}
 }
