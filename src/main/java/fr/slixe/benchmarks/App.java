@@ -43,6 +43,5 @@ public class App
 
 		log.info("Saving benchmarks...");
 		benchmarkService.saveBenchmarks();
-		
 	}
 }

@@ -19,13 +19,13 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-  	maven {
+    maven {
         url 'http://wytrem.github.io/maven'
     }
 
-	maven {
-		url 'https://paladin-framework.github.io/maven'
-	}
+    maven {
+	url 'https://paladin-framework.github.io/maven'
+    }
 	
     mavenCentral()
 }
@@ -37,13 +37,13 @@ dependencies {
         'com.google.code.gson:gson:2.8.5',
         'com.mashape.unirest:unirest-java:1.4.9',
         'org.apache.commons:commons-lang3:3.8.1',
-		'org.apache.logging.log4j:log4j-core:2.10.0'
+	'org.apache.logging.log4j:log4j-core:2.10.0'
     )
     
-	implementation('fr.litarvan.paladin:paladin-framework:1.0.0') {
-		exclude group: 'org.apache.httpcomponents', module: 'httpcore-nio'
-		exclude group: 'org.apache.logging.log4j', module: 'log4j-core'
-	}
+    implementation('fr.litarvan.paladin:paladin-framework:1.1.0') {
+	exclude group: 'org.apache.httpcomponents', module: 'httpcore-nio'
+	exclude group: 'org.apache.logging.log4j', module: 'log4j-core'
+    }
 }
 
 task fatJar(type: Jar) {
@@ -53,12 +53,11 @@ task fatJar(type: Jar) {
 				.findAll { !it.name.endsWith('pom') }
 				.collect { it.isDirectory() ? it : zipTree(it) }
 	}
-		with jar
+	with jar
 
-		baseName = 'dero-benchmarks'
+	baseName = 'dero-benchmarks'
 
-
-		manifest {
-			attributes 'Main-Class': mainClassName
-		}
+	manifest {
+	   attributes 'Main-Class': mainClassName
+	}
 }
