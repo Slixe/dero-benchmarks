@@ -91,6 +91,7 @@ public class BenchmarkService {
 		if (opt.isPresent()) {
 			Benchmark benchmark = opt.get();
 			this.unconfirmedBenchmarks.remove(benchmark);
+			benchmark.setId(lastBenchId());
 			this.confirmedBenchmarks.add(benchmark);
 			saveBenchmarks();
 		}
@@ -113,15 +114,22 @@ public class BenchmarkService {
 		return result;
 	}
 
+	public int lastUnconfirmedBenchId()
+	{
+		if (this.unconfirmedBenchmarks.size() == 0)
+			return 0;
+		int b = this.unconfirmedBenchmarks.get(this.unconfirmedBenchmarks.size() - 1).getId() + 1;
+
+		return b;
+	}
+
 	public int lastBenchId()
 	{
-		if (this.confirmedBenchmarks.size() == 0 && this.unconfirmedBenchmarks.size() == 0)
+		if (this.confirmedBenchmarks.size() == 0)
 			return 0;
 
 		int a = this.confirmedBenchmarks.get(this.confirmedBenchmarks.size() - 1).getId() + 1;
-		int b = this.unconfirmedBenchmarks.get(this.unconfirmedBenchmarks.size() - 1).getId() + 1;
-
-		return a < b ? b : a;
+		return a;
 	}
 	
 	public List<Benchmark> getBenchmarks()

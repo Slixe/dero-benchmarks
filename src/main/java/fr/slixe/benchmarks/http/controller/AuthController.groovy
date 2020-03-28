@@ -7,6 +7,7 @@ import com.google.inject.Inject
 
 import fr.litarvan.paladin.Session
 import fr.litarvan.paladin.http.Controller
+import fr.litarvan.paladin.http.routing.JsonBody
 import fr.litarvan.paladin.http.routing.RequestParams
 import fr.slixe.benchmarks.User
 import fr.slixe.benchmarks.http.InvalidParameterException
@@ -19,6 +20,7 @@ public class AuthController extends Controller {
 	@Inject
 	private AuthService authService
 
+	@JsonBody
 	@RequestParams(required = ["username", "password"])
 	def login(String username, String password, Session session)
 	{
@@ -32,7 +34,7 @@ public class AuthController extends Controller {
 			throw new InvalidParameterException("Username or password is incorrect")
 		}
 
-		log.info(String.format("User %s is now logged in from %s.", user.getUsername()))
+		log.info(String.format("User %s is now logged in.", user.getUsername()))
 
 		session[User] = user
 
@@ -44,6 +46,7 @@ public class AuthController extends Controller {
 	def validate(Session session)
 	{
 		[
+			token: session.token,
 			logged: session[User] != null
 		]
 	}

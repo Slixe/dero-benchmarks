@@ -13,6 +13,7 @@
             <v-btn @click="submit()" color="blue">Sumbit</v-btn>
         </v-form>
     </v-card>
+    <h4>Back to <router-link to="/">Benchmarks</router-link></h4>
 </div>
 </template>
 
@@ -29,28 +30,37 @@ export default {
             alertType: "error",
             alertMessage: "",
             alertShow: false,
+            submitted: false,
         }
     },
     methods: {
         submit() {
-            if (this.valid) {
-                fetch("/api/submit", {
+            if (!this.submitted && this.valid) {
+                this.submitted = true
+                fetch(this.$api + "/api/submit", {
                     method: "POST",
                     body: JSON.stringify({
                         vendor: this.vendor,
                         model: this.model,
                         hashrate: this.hashrate,
-                        miner: this.miner,
-                        user: this.user
+                        minerVersion: this.miner,
+                        owner: this.user
                     })
                 }).then(result => result.json()).then(json => {
                     this.alertType = json.success ? "success" : "error"
                     this.alertMessage = json.message
                     this.alertShow = true
+
+                    if (json.success) {
+                        setTimeout(() => this.$router.push("/"), 5000)
+                    } else {
+                        this.submitted = false
+                    }
                 }).catch(() => {
                     this.alertType = "error"
                     this.alertMessage = "An error has occurred !"
                     this.alertShow = true
+                    this.submitted = false
                 })
             }
         }

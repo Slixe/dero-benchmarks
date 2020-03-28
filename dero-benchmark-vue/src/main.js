@@ -7,6 +7,8 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 Vue.config.productionTip = false
 
+Vue.prototype.$api = "http://localhost:8081"
+
 Vue.use(Vuetify)
 new Vue({
   render: h => h(App),

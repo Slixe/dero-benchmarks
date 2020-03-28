@@ -17,11 +17,21 @@
 export default {
   name: 'App',
   mounted() {
-    fetch("/api/auth/validate", { method: "POST" }).then(result => result.json()).then(json => {
-      if (!json.logged) {
-        localStorage.setItem("token", null)
-      }
-    })
+    let token = localStorage.getItem("token")
+
+    if (token != null) {
+      let headers = new Headers();
+      headers.append("Authorization", "Bearer " + token)
+
+      fetch(this.$api + "/api/auth/validate", { method: "POST", headers: headers }).then(result => result.json()).then(json => {
+        if (json.logged) {
+          localStorage.setItem("token", json.token)
+        }
+        else {
+          localStorage.removeItem("token")
+        }
+      })
+    }
   }
 }
 </script>

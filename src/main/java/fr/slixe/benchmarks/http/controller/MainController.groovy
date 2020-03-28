@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.google.inject.Inject;
 
 import fr.litarvan.paladin.http.Controller;
+import fr.litarvan.paladin.http.routing.JsonBody
 import fr.litarvan.paladin.http.routing.RequestParams;
 import fr.slixe.benchmarks.Benchmark;
 import fr.slixe.benchmarks.Benchmark.Vendor
@@ -47,12 +48,13 @@ public class MainController extends Controller {
 	 * @param String minerVersion (XMRig 5.9.0)
 	 * @param String owner (Slixe)
 	 */
+	@JsonBody
 	@RequestParams(required = ["vendor", "model", "hashrate", "minerVersion", "owner"])
 	def submit(Vendor vendor, String model, long hashrate, String minerVersion, String owner)
 	{
 		log.debug("A new benchmark has been submitted!")
 		
-		Benchmark benchmark = new Benchmark(benchmarkService.lastBenchId(), vendor, model, hashrate, minerVersion, owner)
+		Benchmark benchmark = new Benchmark(benchmarkService.lastUnconfirmedBenchId(), vendor, model, hashrate, minerVersion, owner, System.currentTimeMillis())
 		benchmarkService.addUnconfirmedBenchmarks(benchmark)
 
 		[
@@ -66,6 +68,7 @@ public class MainController extends Controller {
 	 * accessible from: api/confirm
 	 * @param int benchID
 	 */
+	@JsonBody
 	@RequestParams(required = ["benchID"])
 	def confirm(int benchID)
 	{
@@ -84,6 +87,7 @@ public class MainController extends Controller {
 	 * accessible from: api/delete
 	 * @param int benchID
 	 */
+	@JsonBody
 	@RequestParams(required = ["benchID"])
 	def delete(int benchID)
 	{

@@ -23,16 +23,17 @@ export default {
             alertShow: false
         }
     },
+    mounted() {
+        let token = localStorage.getItem("token")
+        if (token != null && token.length == 86)
+        {
+            this.$router.push("/unconfirmedBenchmarks")
+        }
+    },
     methods: {
-        mounted() {
-            if (localStorage.getItem("token") != null)
-            {
-                this.$router.push("/unconfirmedBenchmarks")
-            }
-        },
         login() {
             if (this.valid) {
-                fetch("/api/auth/login", {
+                fetch(this.$api + "/api/auth/login", {
                     method: "POST",
                     body: JSON.stringify({
                         username: this.username,
@@ -41,11 +42,11 @@ export default {
                 }).then(result => result.json()).then(json => {
                     let valid = json.token != null
                     this.alertType = valid ? "success" : "error"
-                    this.alertMessage = valid ? "You are now logged in!" : (json.error + ": " + json.message)
+                    this.alertMessage = valid ? "You are now logged in!" : json.message
                     this.alertShow = true
                     if (valid) {
                         localStorage.setItem("token", json.token)
-                        setTimeout(() => this.$router.push("/unconfirmedBenchmarks"), 1000 * 5)
+                        setTimeout(() => this.$router.push("/unconfirmedBenchmarks"), 5000)
                     }
                 }).catch(() => {
                     this.alertType = "error"
