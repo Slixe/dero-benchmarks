@@ -159,7 +159,7 @@ public class SparkHttpServer implements PaladinHttpServer
 	@Override
 	public void loadSSLCert(File file, char[] secret) throws GeneralSecurityException, IOException
 	{
-		// TODO: Currently not used in Paladin
+		Spark.secure(file.getPath(), new String(secret), null, null);
 	}
 
 	@Override
