@@ -38,6 +38,16 @@ Example of `admins.json`:
 ]
 ```
 
+### Enable SSL
+There are two ways to enable SSL on DERO Benchmarks:
+- You can make a reverse proxy using NGINX (or another one) for example.
+- You can directly activate it in the config.json file
+
+For the second solution, you will need to generate a Java keystore file (.jks).
+To create a java keystore file from an already existing certificate, please refer [here](https://stackoverflow.com/questions/906402/how-to-import-an-existing-x-509-certificate-and-private-key-in-java-keystore-to)
+
+For more examples: [here](https://www.javacodegeeks.com/2014/07/java-keystore-tutorial.html)
+
 ## Frontend
 First you will need to change the value of `Vue.prototype.$api` with your API address (so the IP address/domain name where your backend is running) in the `src/main.js` file.
 
