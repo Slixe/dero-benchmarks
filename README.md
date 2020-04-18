@@ -48,6 +48,18 @@ To create a java keystore file from an already existing certificate, please refe
 
 For more examples: [here](https://www.javacodegeeks.com/2014/07/java-keystore-tutorial.html)
 
+once this step is done, just configure the "config.json" file.
+```json
+{
+  "port": 8080,
+  "enableSSL": true,
+  "keystoreFile": "keystore.jks",
+  "secret": ""
+}
+```
+`keystoreFile` is the path to your file. If it is in the same folder as the application, you can simply specify the file name as above.
+`secret` is the password needed for the keystore file.
+
 ## Frontend
 First you will need to change the value of `Vue.prototype.$api` with your API address (so the IP address/domain name where your backend is running) in the `src/main.js` file.
 
