@@ -20,12 +20,8 @@ public class AuthMiddleware extends Middleware
 	@Override
 	public void before(BeforeEvent event, Request request, Response response, Route route) throws RequestException
 	{
-		log.info("{}", request.getMethod());
-		log.info(request.getIp());
-		log.info(request.getUri());
 		Session session = request.getSession();
 		if (session == null || session.get(User.class) == null) {
-			log.info("NOT LOGGED IN");
 			throw new UnauthorizedOperationException();
 		}
 		else {
