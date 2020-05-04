@@ -62,16 +62,17 @@ export default {
     },
     mounted() {
         let token = localStorage.getItem("token")
-        if (token == null || token.length != 86) //TODO must wait App.mounted()
+        if (token == null) //TODO must wait App.mounted()
         {
             this.$router.push("/login")
             return
-        }
+        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
 
         let headers = new Headers();
         headers.append("Authorization", "Bearer " + token)
 
         fetch(this.$api + "/api/unconfirmedBenchmarks", { headers: headers }).then(result => result.json()).then(json => {
+            console.log(json)
             this.benchmarks = json
             this.loading = false
         })

@@ -8,7 +8,7 @@ import fr.slixe.benchmarks.http.controller.AuthController
 import fr.slixe.benchmarks.http.controller.MainController
 
 [
-    sessionDuration: TimeUnit.DAYS.toMillis(61), // 2 Months
+    sessionDuration: TimeUnit.DAYS.toMillis(2), // 2 days
 
     /**
      * The app controllers, call them whatever you want to

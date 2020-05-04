@@ -3,7 +3,9 @@ package fr.slixe.benchmarks;
 public class User {
 
 	private final String username;
+	@JsonIgnore
 	private final String hashedPassword;
+	@JsonIgnore
 	private final String salt;
 
 	public User(String username, String hashedPassword, String salt)

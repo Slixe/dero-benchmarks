@@ -1,6 +1,6 @@
 package config;
 
-group '/api', {	
+group '/api', {
 	get '/benchmarks', 'main:benchmarks'
 	post '/submit', 'main:submit'
 
@@ -9,15 +9,16 @@ group '/api', {
 		post '/confirm'
 		post '/delete'
 	}, [
-	action: 'main',
-	middleware: 'auth'
+		action: 'main',
+		middleware: 'auth'
 	]
 }
 
-group '/api/auth', { //not recognized in group /api
+group '/api/auth', {
+	//not recognized in group /api
 	post '/validate'
 	post '/login'
 	post '/logout'
 }, [
-action: 'auth'
+	action: 'auth'
 ]

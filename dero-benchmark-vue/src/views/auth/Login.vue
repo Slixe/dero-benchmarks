@@ -25,7 +25,8 @@ export default {
     },
     mounted() {
         let token = localStorage.getItem("token")
-        if (token != null && token.length == 86)
+
+        if (token != null)
         {
             this.$router.push("/unconfirmedBenchmarks")
         }
@@ -40,6 +41,7 @@ export default {
                         password: this.password
                     })
                 }).then(result => result.json()).then(json => {
+                    console.log(json)
                     let valid = json.token != null
                     this.alertType = valid ? "success" : "error"
                     this.alertMessage = valid ? "You are now logged in!" : json.message
