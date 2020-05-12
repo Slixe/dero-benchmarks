@@ -13,7 +13,7 @@ compileJava.options.encoding = 'UTF-8'
 mainClassName = 'fr.slixe.benchmarks.Main'
 
 group 'fr.slixe'
-version '1.0.0'
+version '1.1.0'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -41,7 +41,7 @@ dependencies {
 			'com.auth0:java-jwt:3.10.2'
 			)
 
-	implementation('fr.litarvan.paladin:paladin-framework:1.1.0') {
+	implementation('fr.litarvan.paladin:paladin-framework:1.2.0') {
 		exclude group: 'org.apache.httpcomponents', module: 'httpcore-nio'
 		exclude group: 'org.apache.logging.log4j', module: 'log4j-core'
 	}
