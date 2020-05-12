@@ -31,7 +31,7 @@ public class Main
 
 		String sessionSecret = config.get("secret");
 		if (sessionSecret.isEmpty() || sessionSecret.length() < 6) {
-			log.error("The secret key for Session Manager is empty or low!! Exiting...");
+			log.error("The secret key for Session Manager is empty or too low!! Exiting...");
 			return;
 		}
 		((SessionManager) paladin.getSessionManager()).init(paladin, sessionSecret);
@@ -41,7 +41,7 @@ public class Main
 			log.info("Enabling SSL...");
 
 			String filePath = config.get("keystoreFile");
-			char[] secret = config.get("secret").toCharArray();
+			char[] secret = config.get("keystorePassword").toCharArray();
 			File file = new File(filePath);
 
 			if (!file.exists()) {
