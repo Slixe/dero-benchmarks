@@ -54,11 +54,15 @@ once this step is done, just configure the "config.json" file.
   "port": 8080,
   "enableSSL": true,
   "keystoreFile": "keystore.jks",
+  "keystorePassword": "",
   "secret": ""
 }
 ```
 `keystoreFile` is the path to your file. If it is in the same folder as the application, you can simply specify the file name as above.
-`secret` is the password needed for the keystore file.
+
+`keystorePassword` is the password needed for the keystore file.
+
+`secret` is used by the Session Manager to sign, verify that the auth token provided is valid.
 
 ## Frontend
 First you will need to change the value of `Vue.prototype.$api` with your API address (so the IP address/domain name where your backend is running) in the `src/main.js` file.
