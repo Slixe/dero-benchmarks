@@ -4,17 +4,19 @@ public class Benchmark {
 
 	private int id;
 	private Vendor vendor; //AMD
-	private String model; //Ryzen 5 3600X	
+	private String model; //Ryzen 5 3600X
+	private String memory;
 	private long hashrate; //550h/s
 	private String minerVersion; //XMRig 5.9.0
 	private String owner; //Owner
 	private long timestamp; //Submitted on 08/03/2020
 	
-	public Benchmark(int id, Vendor vendor, String model, long hashrate, String minerVersion, String owner, long timestamp)
+	public Benchmark(int id, Vendor vendor, String model, String memory, long hashrate, String minerVersion, String owner, long timestamp)
 	{
 		this.id = id;
 		this.vendor = vendor;
 		this.model = model;
+		this.memory = memory;
 		this.hashrate = hashrate;
 		this.minerVersion = minerVersion;
 		this.owner = owner;
@@ -41,6 +43,11 @@ public class Benchmark {
 		return model;
 	}
 
+	public String getMemory()
+	{
+		return memory;
+	}
+
 	public long getHashrate()
 	{
 		return hashrate;
@@ -64,7 +71,7 @@ public class Benchmark {
 	@Override
 	public String toString()
 	{
-		return String.format("Benchmark[vendor=%s, model=%s, hashrate=%d, owner=%s, timestamp=%d]", vendor.name(), model, hashrate, owner, timestamp);
+		return String.format("Benchmark[vendor=%s, model=%s, memory=%s, hashrate=%d, owner=%s, timestamp=%d]", vendor.name(), model, memory, hashrate, owner, timestamp);
 	}
 
 	public static enum Vendor {

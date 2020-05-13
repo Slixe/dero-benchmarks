@@ -39,6 +39,10 @@ export default {
                     value: "model"
                 },
                 {
+                    text: "Memory",
+                    value: "memory"
+                },
+                {
                     text: "Hashrate (h/s)",
                     value: "hashrate"
                 },

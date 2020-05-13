@@ -7,6 +7,7 @@
         <v-form class="submit-form" v-model="valid">
             <v-text-field v-model="vendor" autocomplete="vendor" label="Vendor" required></v-text-field>
             <v-text-field v-model="model" autocomplete="model" label="Model" required></v-text-field>
+            <v-text-field v-model="memory" autocomplete="memory" label="Memory" required></v-text-field>
             <v-text-field v-model="hashrate" autocomplete="hashrate" label="Hashrate" required></v-text-field>
             <v-text-field v-model="miner" autocomplete="miner" label="Miner" required></v-text-field>
             <v-text-field v-model="user" autocomplete="user" label="User" class="text-field" equired></v-text-field>
@@ -24,6 +25,7 @@ export default {
             valid: false,
             vendor: "",
             model: "",
+            memory: "",
             hashrate: "",
             miner: "",
             user: "",
@@ -42,6 +44,7 @@ export default {
                     body: JSON.stringify({
                         vendor: this.vendor,
                         model: this.model,
+                        memory: this.memory,
                         hashrate: this.hashrate,
                         minerVersion: this.miner,
                         owner: this.user

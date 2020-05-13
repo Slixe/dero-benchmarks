@@ -23,6 +23,7 @@ public class BenchmarkAdapter implements JsonSerializer<Benchmark>, JsonDeserial
 		json.addProperty("id", src.getId());
 		json.addProperty("vendor", src.getVendor().name());
 		json.addProperty("model", src.getModel());
+		json.addProperty("memory", src.getMemory());
 		json.addProperty("hashrate", src.getHashrate());
 		json.addProperty("minerVersion", src.getMinerVersion());
 		json.addProperty("owner", src.getOwner());
@@ -39,11 +40,12 @@ public class BenchmarkAdapter implements JsonSerializer<Benchmark>, JsonDeserial
 		int id = json.get("id").getAsInt();
 		Vendor vendor = Vendor.valueOf(json.get("vendor").getAsString());
 		String model = json.get("model").getAsString();
+		String memory = json.get("memory").getAsString();
 		long hashrate = json.get("hashrate").getAsLong();
 		String minerVersion = json.get("minerVersion").getAsString();
 		String owner = json.get("owner").getAsString();
 		long timestamp = json.get("timestamp").getAsLong();
 
-		return new Benchmark(id, vendor, model, hashrate, minerVersion, owner, timestamp);
+		return new Benchmark(id, vendor, model, memory, hashrate, minerVersion, owner, timestamp);
 	}
 }

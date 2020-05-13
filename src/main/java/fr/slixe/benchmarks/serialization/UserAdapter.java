@@ -31,7 +31,7 @@ public class UserAdapter implements JsonSerializer<User>, JsonDeserializer<User>
 			
 		}
 		else if (jsonObject.has("hashedPassword")) {
-			hashedPassword = jsonObject.get("hashedPassword").getAsString();	
+			hashedPassword = jsonObject.get("hashedPassword").getAsString();
 		}
 		
 		return new User(username, hashedPassword, salt);

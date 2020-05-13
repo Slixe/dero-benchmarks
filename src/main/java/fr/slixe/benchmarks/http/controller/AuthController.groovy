@@ -8,6 +8,7 @@ import com.google.inject.Inject
 import fr.litarvan.paladin.Paladin
 import fr.litarvan.paladin.Session
 import fr.litarvan.paladin.http.Controller
+import fr.litarvan.paladin.http.Request
 import fr.litarvan.paladin.http.routing.JsonBody
 import fr.litarvan.paladin.http.routing.RequestParams
 import fr.slixe.benchmarks.User
@@ -27,13 +28,13 @@ public class AuthController extends Controller {
 
 	@JsonBody
 	@RequestParams(required = ["username", "password"])
-	def login(String username, String password)
+	def login(String username, String password, Request request)
 	{
 		if (password.length() > 64) {
 			throw new InvalidParameterException("Password is too long")
 		}
 		
-		User user = authService.loginUsername(username, password)
+		User user = authService.loginUsername(username, password, request.ip)
 
 		if (user == null) {
 			throw new InvalidParameterException("Username or password is incorrect")

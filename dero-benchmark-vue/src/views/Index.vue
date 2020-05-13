@@ -13,6 +13,7 @@
         </v-data-table>
     </v-card>
     <h4>Submit your own benchmarks <router-link to="/submit">here</router-link></h4>
+    <h5>Admin panel <router-link to="/login">here</router-link></h5>
 </div>
 </template>
 
@@ -31,6 +32,10 @@ export default {
                 {
                     text: "Model",
                     value: "model"
+                },
+                {
+                    text: "Memory",
+                    value: "memory"
                 },
                 {
                     text: "Hashrate (h/s)",

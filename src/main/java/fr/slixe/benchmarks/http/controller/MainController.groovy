@@ -49,12 +49,12 @@ public class MainController extends Controller {
 	 * @param String owner (Slixe)
 	 */
 	@JsonBody
-	@RequestParams(required = ["vendor", "model", "hashrate", "minerVersion", "owner"])
-	def submit(Vendor vendor, String model, long hashrate, String minerVersion, String owner)
+	@RequestParams(required = ["vendor", "model", "memory", "hashrate", "minerVersion", "owner"])
+	def submit(Vendor vendor, String model, String memory, long hashrate, String minerVersion, String owner)
 	{
 		log.debug("A new benchmark has been submitted!")
 		
-		Benchmark benchmark = new Benchmark(benchmarkService.lastUnconfirmedBenchId(), vendor, model, hashrate, minerVersion, owner, System.currentTimeMillis())
+		Benchmark benchmark = new Benchmark(benchmarkService.lastUnconfirmedBenchId(), vendor, model, memory, hashrate, minerVersion, owner, System.currentTimeMillis())
 		benchmarkService.addUnconfirmedBenchmarks(benchmark)
 
 		[

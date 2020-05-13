@@ -1,8 +1,5 @@
 package fr.slixe.benchmarks.http;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import fr.litarvan.paladin.AfterEvent;
 import fr.litarvan.paladin.BeforeEvent;
 import fr.litarvan.paladin.Session;
@@ -15,7 +12,7 @@ import fr.slixe.benchmarks.User;
 
 public class AuthMiddleware extends Middleware
 {
-	private static final Logger log = LoggerFactory.getLogger("Auth Middleware");
+	//private static final Logger log = LoggerFactory.getLogger("Auth Middleware");
 
 	@Override
 	public void before(BeforeEvent event, Request request, Response response, Route route) throws RequestException
@@ -24,9 +21,9 @@ public class AuthMiddleware extends Middleware
 		if (session == null || session.get(User.class) == null) {
 			throw new UnauthorizedOperationException();
 		}
-		else {
-			log.info("{}", session.get(User.class));
-		}
+		/*else {
+			log.info("{} from {}", session.get(User.class).getUsername(), request.getIp());
+		}*/
 	}
 
 	@Override

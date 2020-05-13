@@ -10,3 +10,5 @@ build
 /benchmarks.json
 /config.json
 /.gitignore
+/admins.json
+/keystore.jks
