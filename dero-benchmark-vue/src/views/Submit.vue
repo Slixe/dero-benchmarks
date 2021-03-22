@@ -11,7 +11,7 @@
             <v-text-field v-model="hashrate" autocomplete="hashrate" label="Hashrate" required></v-text-field>
             <v-text-field v-model="miner" autocomplete="miner" label="Miner" required></v-text-field>
             <v-text-field v-model="user" autocomplete="user" label="User" class="text-field" equired></v-text-field>
-            <v-btn @click="submit()" color="blue">Sumbit</v-btn>
+            <v-btn @click="submit()" color="blue">Submit</v-btn>
         </v-form>
     </v-card>
     <h4>Back to <router-link to="/">Benchmarks</router-link></h4>
@@ -42,7 +42,7 @@ export default {
                 fetch(this.$api + "/api/submit", {
                     method: "POST",
                     body: JSON.stringify({
-                        vendor: this.vendor,
+                        vendor: this.vendor.toUpperCase(),
                         model: this.model,
                         memory: this.memory,
                         hashrate: this.hashrate,
