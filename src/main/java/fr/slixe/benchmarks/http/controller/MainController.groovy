@@ -45,16 +45,17 @@ public class MainController extends Controller {
 	 * @param Vendor vendor (AMD/INTEL/NVIDIA)
 	 * @param String model (Ryzen 5 3600X)
 	 * @param long hashrate (in h/s)
+	 * @param watts 75
 	 * @param String minerVersion (XMRig 5.9.0)
 	 * @param String owner (Slixe)
 	 */
 	@JsonBody
-	@RequestParams(required = ["vendor", "model", "memory", "hashrate", "minerVersion", "owner"])
-	def submit(Vendor vendor, String model, String memory, long hashrate, String minerVersion, String owner)
+	@RequestParams(required = ["vendor", "model", "memory", "hashrate", "watts", "minerVersion", "owner"])
+	def submit(Vendor vendor, String model, String memory, long hashrate, int watts, String minerVersion, String owner)
 	{
 		log.debug("A new benchmark has been submitted!")
 		
-		Benchmark benchmark = new Benchmark(benchmarkService.lastUnconfirmedBenchId(), vendor, model, memory, hashrate, minerVersion, owner, System.currentTimeMillis())
+		Benchmark benchmark = new Benchmark(benchmarkService.lastUnconfirmedBenchId(), vendor, model, memory, hashrate, watts, minerVersion, owner, System.currentTimeMillis())
 		benchmarkService.addUnconfirmedBenchmarks(benchmark)
 
 		[

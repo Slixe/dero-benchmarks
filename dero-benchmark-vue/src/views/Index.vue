@@ -42,6 +42,10 @@ export default {
                     value: "hashrate"
                 },
                 {
+                    text: "Watts (w)",
+                    value: "watts"
+                },
+                {
                     text: "Miner",
                     value: "minerVersion"
                 },

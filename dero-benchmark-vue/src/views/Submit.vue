@@ -9,6 +9,7 @@
             <v-text-field v-model="model" autocomplete="model" label="Model" required></v-text-field>
             <v-text-field v-model="memory" autocomplete="memory" label="Memory" required></v-text-field>
             <v-text-field v-model="hashrate" autocomplete="hashrate" label="Hashrate" required></v-text-field>
+            <v-text-field v-model="watts" autocomplete="watts" label="Watts" required></v-text-field>
             <v-text-field v-model="miner" autocomplete="miner" label="Miner" required></v-text-field>
             <v-text-field v-model="user" autocomplete="user" label="User" class="text-field" equired></v-text-field>
             <v-btn @click="submit()" color="blue">Submit</v-btn>
@@ -27,6 +28,7 @@ export default {
             model: "",
             memory: "",
             hashrate: "",
+            watts: 0,
             miner: "",
             user: "",
             alertType: "error",
@@ -46,6 +48,7 @@ export default {
                         model: this.model,
                         memory: this.memory,
                         hashrate: this.hashrate,
+                        watts: this.watts,
                         minerVersion: this.miner,
                         owner: this.user
                     })

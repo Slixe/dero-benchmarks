@@ -7,17 +7,24 @@ public class Benchmark {
 	private String model; //Ryzen 5 3600X
 	private String memory;
 	private long hashrate; //550h/s
+	private int watts;
 	private String minerVersion; //XMRig 5.9.0
 	private String owner; //Owner
 	private long timestamp; //Submitted on 08/03/2020
-	
+
 	public Benchmark(int id, Vendor vendor, String model, String memory, long hashrate, String minerVersion, String owner, long timestamp)
+	{
+		this(id, vendor, model, memory, hashrate, 0, minerVersion, owner, timestamp);
+	}
+
+	public Benchmark(int id, Vendor vendor, String model, String memory, long hashrate, int watts, String minerVersion, String owner, long timestamp)
 	{
 		this.id = id;
 		this.vendor = vendor;
 		this.model = model;
 		this.memory = memory;
 		this.hashrate = hashrate;
+		this.watts = watts;
 		this.minerVersion = minerVersion;
 		this.owner = owner;
 		this.timestamp = timestamp;
@@ -52,6 +59,11 @@ public class Benchmark {
 	{
 		return hashrate;
 	}
+
+	public int getWatts()
+	{
+		return watts;
+	}
 	
 	public String getMinerVersion()
 	{
@@ -71,12 +83,14 @@ public class Benchmark {
 	@Override
 	public String toString()
 	{
-		return String.format("Benchmark[vendor=%s, model=%s, memory=%s, hashrate=%d, owner=%s, timestamp=%d]", vendor.name(), model, memory, hashrate, owner, timestamp);
+		return String.format("Benchmark[vendor=%s, model=%s, memory=%s, hashrate=%d, watts=%d, owner=%s, timestamp=%d]", vendor.name(), model, memory, hashrate, watts, owner, timestamp);
 	}
 
 	public static enum Vendor {
 		AMD,
 		NVIDIA,
-		INTEL
+		INTEL,
+		ARM,
+		OTHER
 	}
 }
